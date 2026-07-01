@@ -77,27 +77,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "OGMA — From ideas, worlds are born." },
+      { title: "OGMA Labs — Das ideias nascem os mundos." },
       {
         name: "description",
         content:
-          "OGMA is a technology company that helps businesses grow through software engineering, artificial intelligence, cybersecurity, design and digital strategy.",
+          "OGMA Labs transforma ideias em negócios mais inteligentes, usando tecnologia para ampliar o potencial das pessoas.",
       },
-      { name: "author", content: "OGMA" },
-      { property: "og:title", content: "OGMA — From ideas, worlds are born." },
+      { name: "author", content: "OGMA Labs" },
+      { name: "theme-color", content: "#0A0A0B" },
+      { property: "og:title", content: "OGMA Labs — Das ideias nascem os mundos." },
       {
         property: "og:description",
         content:
-          "We remove technological barriers so ideas can grow into businesses that change communities.",
+          "Transformamos ideias em negócios mais inteligentes. Software, IA, automação, segurança e design sob um só teto.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "OGMA" },
+      { property: "og:site_name", content: "OGMA Labs" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "OGMA — From ideas, worlds are born." },
+      { name: "twitter:title", content: "OGMA Labs" },
       {
         name: "twitter:description",
-        content:
-          "Technology is never the end goal. It exists to empower people.",
+        content: "Das ideias nascem os mundos.",
       },
     ],
     links: [
@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap",
       },
     ],
   }),
@@ -119,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
