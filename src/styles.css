@@ -11,7 +11,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,66 +34,41 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-petroleum: var(--petroleum);
   --color-copper: var(--copper);
-  --color-graphite: var(--graphite);
   --color-ivory: var(--ivory);
-  --color-warm-gray: var(--warm-gray);
-
-  --shadow-elegant: 0 20px 60px -20px oklch(0.22 0.03 240 / 0.25);
-  --shadow-card: 0 1px 2px oklch(0.22 0.03 240 / 0.04), 0 8px 32px -8px oklch(0.22 0.03 240 / 0.08);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.625rem;
 
-  /* Brand */
-  --petroleum: oklch(0.24 0.03 240);      /* #0D1F2D */
-  --copper: oklch(0.62 0.14 45);          /* #C56A2D */
-  --graphite: oklch(0.26 0.008 250);      /* #1A1F24 */
-  --ivory: oklch(0.955 0.012 85);         /* #F4F1EA */
-  --warm-gray: oklch(0.72 0.008 250);     /* #A7ADB5 */
+  /* Vercel-inspired dark tech + OGMA copper accent */
+  --background: oklch(0.14 0.005 260);       /* near-black #0A0A0B */
+  --foreground: oklch(0.98 0.005 85);        /* ivory white */
+  --surface: oklch(0.17 0.006 260);          /* elevated */
+  --surface-2: oklch(0.20 0.008 260);        /* card raised */
 
-  --background: var(--ivory);
-  --foreground: var(--petroleum);
+  --copper: oklch(0.72 0.16 55);             /* brighter copper for dark bg */
+  --ivory: oklch(0.955 0.012 85);
 
-  --card: oklch(1 0 0);
-  --card-foreground: var(--petroleum);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--petroleum);
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
 
-  --primary: var(--petroleum);
-  --primary-foreground: var(--ivory);
-  --secondary: oklch(0.92 0.012 85);
-  --secondary-foreground: var(--petroleum);
-  --muted: oklch(0.92 0.012 85);
-  --muted-foreground: oklch(0.48 0.015 250);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface);
+  --muted-foreground: oklch(0.62 0.008 260);
   --accent: var(--copper);
-  --accent-foreground: var(--ivory);
-  --destructive: oklch(0.55 0.2 27);
-  --destructive-foreground: var(--ivory);
-  --border: oklch(0.88 0.012 85);
-  --input: oklch(0.88 0.012 85);
-  --ring: var(--copper);
-}
-
-.dark {
-  --background: var(--petroleum);
-  --foreground: var(--ivory);
-  --card: var(--graphite);
-  --card-foreground: var(--ivory);
-  --popover: var(--graphite);
-  --popover-foreground: var(--ivory);
-  --primary: var(--copper);
-  --primary-foreground: var(--petroleum);
-  --secondary: oklch(0.3 0.02 240);
-  --secondary-foreground: var(--ivory);
-  --muted: oklch(0.3 0.02 240);
-  --muted-foreground: var(--warm-gray);
-  --accent: var(--copper);
-  --accent-foreground: var(--ivory);
+  --accent-foreground: var(--background);
+  --destructive: oklch(0.65 0.22 27);
+  --destructive-foreground: var(--foreground);
   --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 10%);
   --ring: var(--copper);
 }
 
@@ -103,15 +79,17 @@
 
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(1200px 600px at 50% -10%, oklch(from var(--copper) l c h / 0.10), transparent 60%);
   }
 
   h1, h2, h3, .font-display {
@@ -119,26 +97,69 @@
     letter-spacing: -0.02em;
     font-weight: 400;
   }
+
+  .font-mono, code, kbd {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background-color: oklch(from var(--copper) l c h / 0.35);
+    color: var(--foreground);
+  }
 }
 
-@utility text-balance {
-  text-wrap: balance;
-}
-
-@utility text-pretty {
-  text-wrap: pretty;
-}
+@utility text-balance { text-wrap: balance; }
+@utility text-pretty { text-wrap: pretty; }
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, oklch(from var(--foreground) l c h / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(from var(--foreground) l c h / 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 100%);
 }
 
-@utility bg-radial-glow {
-  background:
-    radial-gradient(60% 50% at 50% 0%, oklch(from var(--copper) l c h / 0.18) 0%, transparent 70%),
-    radial-gradient(50% 40% at 80% 20%, oklch(from var(--copper) l c h / 0.08) 0%, transparent 70%),
-    var(--petroleum);
+@utility bg-dots {
+  background-image: radial-gradient(oklch(1 0 0 / 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@utility text-gradient {
+  background: linear-gradient(180deg, var(--foreground) 30%, oklch(from var(--foreground) l c h / 0.55) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-copper {
+  background: linear-gradient(180deg, oklch(0.85 0.16 60) 0%, oklch(0.60 0.16 45) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility border-gradient {
+  position: relative;
+}
+@utility border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.18), oklch(1 0 0 / 0.02));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@utility animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.06), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
 }
