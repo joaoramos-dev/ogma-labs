@@ -12,9 +12,7 @@ import {
   Compass,
   Share2,
   CloudCog,
-  Phone,
   Mail,
-  MessageCircle,
   Linkedin,
   Instagram,
   Terminal,
@@ -361,72 +359,79 @@ function LandingPage() {
 
         {/* CONTACT */}
         <section id="contact" className="relative border-t border-border py-32 lg:py-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="grid gap-16 lg:grid-cols-12">
-              <div className="lg:col-span-5">
-                <SectionLabel>Contato / 05</SectionLabel>
-                <h2 className="mt-6 font-display text-4xl leading-[1.05] text-balance sm:text-5xl md:text-6xl">
-                  Comece uma conversa,
-                  <br />
-                  <span className="italic text-gradient-copper">não um orçamento.</span>
-                </h2>
-                <p className="mt-6 text-muted-foreground text-pretty">
-                  Conte o que você está tentando construir — ou o que construiria
-                  se a tecnologia não estivesse no caminho. A gente escuta primeiro.
-                </p>
-
-                <ul className="mt-12 space-y-2">
-                  <ContactRow icon={Phone} label="Telefone" value="+55 11 90000-0000" href="tel:+5511900000000" />
-                  <ContactRow icon={MessageCircle} label="WhatsApp" value="Chame no WhatsApp" href="https://wa.me/5511900000000" />
-                  <ContactRow icon={Mail} label="Email" value="labs@ogma.dev" href="mailto:labs@ogma.dev" />
-                  <ContactRow icon={Linkedin} label="LinkedIn" value="linkedin.com/company/ogma-labs" href="https://linkedin.com" />
-                  <ContactRow icon={Instagram} label="Instagram" value="@ogma.labs" href="https://instagram.com" />
-                </ul>
-              </div>
-
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="lg:col-span-7 relative overflow-hidden rounded-3xl border border-border bg-secondary/20 p-8 backdrop-blur md:p-10"
-              >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-copper/40 to-transparent" />
-                <div className="mb-6 flex items-center justify-between">
-                  <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                    novo_contato.form
-                  </span>
-                  <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-                    <span className="h-1.5 w-1.5 rounded-full bg-copper" />
-                    ativo
-                  </span>
-                </div>
-                <div className="grid gap-5 md:grid-cols-2">
-                  <Field label="Seu nome" id="name" placeholder="Ana Ribeiro" />
-                  <Field label="Empresa" id="company" placeholder="Onde você trabalha" />
-                  <Field label="Email" id="email" type="email" placeholder="voce@empresa.com" />
-                  <Field label="Telefone (opcional)" id="phone" placeholder="+55 11 90000-0000" />
-                </div>
-                <div className="mt-5">
-                  <label htmlFor="message" className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                    Sua ideia
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    placeholder="O que você quer construir, e para quem?"
-                    className="w-full resize-none rounded-xl border border-input bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/20"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-transform hover:scale-[1.01] sm:w-auto"
-                >
-                  Iniciar a conversa
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                </button>
-                <p className="mt-4 font-mono text-xs text-muted-foreground">
-                  → resposta em até 1 dia útil, por uma pessoa real.
-                </p>
-              </form>
+          <div className="mx-auto max-w-5xl px-6 lg:px-10">
+            <div className="text-center">
+              <SectionLabel className="justify-center">Contato / 05</SectionLabel>
+              <h2 className="mt-6 font-display text-4xl leading-[1.05] text-balance sm:text-5xl md:text-6xl">
+                Vamos construir juntos.
+              </h2>
+              <p className="mx-auto mt-6 max-w-xl text-muted-foreground text-pretty">
+                Conte o que você está tentando construir — ou o que construiria
+                se a tecnologia não estivesse no caminho.
+              </p>
             </div>
+
+            <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <a
+                href="mailto:labs@ogma.dev"
+                className="group relative flex flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-secondary/20 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-copper/30 hover:bg-secondary/40"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors group-hover:border-copper/40 group-hover:text-copper">
+                  <Mail className="h-5 w-5" />
+                </span>
+                <div className="text-center">
+                  <span className="block font-mono text-xs uppercase tracking-widest text-muted-foreground">Email</span>
+                  <span className="mt-1 block text-sm text-foreground">labs@ogma.dev</span>
+                </div>
+                <ArrowUpRight className="absolute top-4 right-4 h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-copper" />
+              </a>
+
+              <a
+                href="https://wa.me/5511900000000"
+                className="group relative flex flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-secondary/20 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-copper/30 hover:bg-secondary/40"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors group-hover:border-copper/40 group-hover:text-copper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <div className="text-center">
+                  <span className="block font-mono text-xs uppercase tracking-widest text-muted-foreground">WhatsApp</span>
+                  <span className="mt-1 block text-sm text-foreground">Chame agora</span>
+                </div>
+                <ArrowUpRight className="absolute top-4 right-4 h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-copper" />
+              </a>
+
+              <a
+                href="https://instagram.com"
+                className="group relative flex flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-secondary/20 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-copper/30 hover:bg-secondary/40"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors group-hover:border-copper/40 group-hover:text-copper">
+                  <Instagram className="h-5 w-5" />
+                </span>
+                <div className="text-center">
+                  <span className="block font-mono text-xs uppercase tracking-widest text-muted-foreground">Instagram</span>
+                  <span className="mt-1 block text-sm text-foreground">@ogma.labs</span>
+                </div>
+                <ArrowUpRight className="absolute top-4 right-4 h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-copper" />
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                className="group relative flex flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-secondary/20 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-copper/30 hover:bg-secondary/40"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors group-hover:border-copper/40 group-hover:text-copper">
+                  <Linkedin className="h-5 w-5" />
+                </span>
+                <div className="text-center">
+                  <span className="block font-mono text-xs uppercase tracking-widest text-muted-foreground">LinkedIn</span>
+                  <span className="mt-1 block text-sm text-foreground">ogma-labs</span>
+                </div>
+                <ArrowUpRight className="absolute top-4 right-4 h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-copper" />
+              </a>
+            </div>
+
+            <p className="mt-12 text-center font-mono text-xs text-muted-foreground">
+              → resposta em até 1 dia útil, por uma pessoa real.
+            </p>
           </div>
         </section>
       </main>
@@ -482,32 +487,6 @@ function SectionLabel({ children, className = "" }: { children: React.ReactNode;
     <div className={`inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground ${className}`}>
       <span className="h-px w-6 bg-copper" />
       {children}
-    </div>
-  );
-}
-
-function Field({
-  label,
-  id,
-  placeholder,
-  type = "text",
-}: {
-  label: string;
-  id: string;
-  placeholder?: string;
-  type?: string;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-        {label}
-      </label>
-      <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        className="w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/20"
-      />
     </div>
   );
 }
