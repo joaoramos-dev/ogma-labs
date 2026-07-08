@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CosmicBackground } from "@/components/CosmicBackground";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -109,6 +110,7 @@ function LandingPage() {
       <main id="top">
         {/* HERO */}
         <section className="relative overflow-hidden pt-40 pb-32 lg:pt-48 lg:pb-40">
+          <CosmicBackground />
           <div className="pointer-events-none absolute inset-0 bg-grid" />
           <HeroGlow />
 
