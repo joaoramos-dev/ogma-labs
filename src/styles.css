@@ -141,7 +141,7 @@
 @utility border-gradient {
   position: relative;
 }
-@utility border-gradient::before {
+.border-gradient::before {
   content: "";
   position: absolute;
   inset: 0;
