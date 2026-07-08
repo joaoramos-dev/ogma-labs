@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { CosmicBackground } from "@/components/CosmicBackground";
 import {
   ArrowUpRight,
   ArrowRight,
