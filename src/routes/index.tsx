@@ -491,32 +491,6 @@ function SectionLabel({ children, className = "" }: { children: React.ReactNode;
   );
 }
 
-function Field({
-  label,
-  id,
-  placeholder,
-  type = "text",
-}: {
-  label: string;
-  id: string;
-  placeholder?: string;
-  type?: string;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-        {label}
-      </label>
-      <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        className="w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-copper focus:outline-none focus:ring-2 focus:ring-copper/20"
-      />
-    </div>
-  );
-}
-
 function ContactRow({
   icon: Icon,
   label,
