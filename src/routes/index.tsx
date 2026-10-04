@@ -536,11 +536,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
   );
 }
 
-/**
- * Logo: Celtic knot (interlaced triangle / triquetra) reinterpreted with
- * technological precision — thin strokes, a subtle copper glow, and a
- * central node suggesting a network anchor.
- */
+/** Logo: the official OGMA Labs mark (uploaded brand asset). */
 function Logo() {
   return (
     <span aria-hidden className="relative flex h-8 w-8 items-center justify-center">
