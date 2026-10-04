@@ -79,6 +79,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
     color-scheme: dark;
   }
 
@@ -162,4 +163,15 @@
   background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.06), transparent);
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
+}
+
+.snap-section {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+@media (max-width: 767px) {
+  html { scroll-snap-type: y proximity; }
 }

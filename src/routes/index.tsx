@@ -110,7 +110,7 @@ function LandingPage() {
 
       <main id="top">
         {/* HERO */}
-        <section className="relative overflow-hidden pt-40 pb-32 lg:pt-48 lg:pb-40">
+        <section className="snap-section relative overflow-hidden pt-40 pb-32 lg:pt-48 lg:pb-40">
           <CosmicBackground />
           <div className="pointer-events-none absolute inset-0 bg-grid" />
           <HeroGlow />
@@ -154,25 +154,11 @@ function LandingPage() {
               </a>
             </div>
 
-            {/* stat strip */}
-            <div className="mx-auto mt-24 grid max-w-4xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
-              {[
-                ["12+", "anos construindo"],
-                ["80+", "parceiros ativos"],
-                ["9", "disciplinas"],
-                ["24/7", "presença"],
-              ].map(([k, v]) => (
-                <div key={v} className="bg-background/60 px-6 py-6 backdrop-blur">
-                  <div className="font-display text-3xl text-gradient-copper">{k}</div>
-                  <div className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{v}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
         {/* WHO */}
-        <section id="who" className="relative border-t border-border py-32 lg:py-40">
+        <section id="who" className="snap-section relative border-t border-border py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid gap-16 lg:grid-cols-12">
               <div className="lg:col-span-4">
@@ -211,7 +197,7 @@ function LandingPage() {
         </section>
 
         {/* SERVICES */}
-        <section id="services" className="relative border-t border-border py-32 lg:py-40">
+        <section id="services" className="snap-section relative border-t border-border py-32 lg:py-40">
           <div className="pointer-events-none absolute inset-0 bg-dots opacity-40" />
           <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
             <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
@@ -261,7 +247,7 @@ function LandingPage() {
         </section>
 
         {/* PRINCIPLES */}
-        <section id="principles" className="relative border-t border-border py-32 lg:py-40">
+        <section id="principles" className="snap-section relative border-t border-border py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid gap-16 lg:grid-cols-12">
               <div className="lg:col-span-4">
@@ -297,7 +283,7 @@ function LandingPage() {
         </section>
 
         {/* STORIES */}
-        <section id="stories" className="relative border-t border-border py-32 lg:py-40">
+        <section id="stories" className="snap-section relative border-t border-border py-32 lg:py-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="max-w-2xl">
               <SectionLabel>Casos / 04</SectionLabel>
@@ -344,7 +330,7 @@ function LandingPage() {
         </section>
 
         {/* MANIFESTO */}
-        <section className="relative overflow-hidden border-t border-border py-40 lg:py-56">
+        <section className="snap-section relative overflow-hidden border-t border-border py-40 lg:py-56">
           <div className="pointer-events-none absolute inset-0 bg-grid opacity-70" />
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-copper/10 blur-[120px]" />
           <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-10">
@@ -361,7 +347,7 @@ function LandingPage() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="relative border-t border-border py-32 lg:py-40">
+        <section id="contact" className="snap-section relative border-t border-border py-32 lg:py-40">
           <div className="mx-auto max-w-5xl px-6 lg:px-10">
             <div className="text-center">
               <SectionLabel className="justify-center">Contato / 05</SectionLabel>
@@ -440,7 +426,7 @@ function LandingPage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-border">
+      <footer className="snap-start relative border-t border-border">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
           <div className="grid gap-10 md:grid-cols-[1fr_auto_auto] md:items-center">
             <a href="#top" className="flex items-center gap-2.5">
