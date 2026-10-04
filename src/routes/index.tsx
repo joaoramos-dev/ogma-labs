@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import ogmaLogo from "@/assets/ogma-logo.png.asset.json";
+import ogmaLogoWhite from "@/assets/ogma-logo-white.png.asset.json";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import {
   ArrowUpRight,
