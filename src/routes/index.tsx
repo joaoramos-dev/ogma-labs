@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import ogmaLogo from "@/assets/ogma-logo.png.asset.json";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import {
   ArrowUpRight,
@@ -535,39 +536,18 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
   );
 }
 
-/**
- * Logo: Celtic knot (interlaced triangle / triquetra) reinterpreted with
- * technological precision — thin strokes, a subtle copper glow, and a
- * central node suggesting a network anchor.
- */
+/** Logo: the official OGMA Labs mark (uploaded brand asset). */
 function Logo() {
   return (
     <span aria-hidden className="relative flex h-8 w-8 items-center justify-center">
-      <span className="absolute inset-0 rounded-lg border border-border bg-secondary/60" />
-      <svg
-        viewBox="0 0 32 32"
-        className="relative h-5 w-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <defs>
-          <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.85 0.16 60)" />
-            <stop offset="100%" stopColor="oklch(0.55 0.14 40)" />
-          </linearGradient>
-        </defs>
-        <g stroke="url(#logoGrad)">
-          {/* three interlaced arcs — triquetra reinterpretation */}
-          <path d="M16 5 C 22 10, 22 18, 16 23" />
-          <path d="M16 5 C 10 10, 10 18, 16 23" />
-          <path d="M7 20 C 12 17, 20 17, 25 20" />
-          {/* central node */}
-          <circle cx="16" cy="16" r="1.8" fill="url(#logoGrad)" stroke="none" />
-        </g>
-      </svg>
+      <img
+        src={ogmaLogo.url}
+        alt=""
+        width={32}
+        height={32}
+        className="relative h-8 w-8 object-contain"
+        style={{ filter: "drop-shadow(0 0 6px oklch(0.7 0.15 50 / 0.35))" }}
+      />
     </span>
   );
 }
