@@ -541,12 +541,11 @@ function Logo() {
   return (
     <span aria-hidden className="relative flex h-8 w-8 items-center justify-center">
       <img
-        src={ogmaLogo.url}
+        src={ogmaLogoWhite.url}
         alt=""
         width={32}
         height={32}
         className="relative h-8 w-8 object-contain"
-        style={{ filter: "drop-shadow(0 0 6px oklch(0.7 0.15 50 / 0.35))" }}
       />
     </span>
   );
