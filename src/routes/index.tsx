@@ -84,7 +84,7 @@ function LandingPage() {
           <a href="#top" className="flex items-center gap-2.5">
             <Logo />
             <span className="text-[15px] font-medium tracking-tight">
-              OGMA <span className="text-muted-foreground">Labs</span>
+              OGMA <span className="italic text-muted-foreground">Labs</span>
             </span>
           </a>
           <nav className="hidden items-center gap-1 md:flex">
@@ -446,7 +446,7 @@ function LandingPage() {
             <a href="#top" className="flex items-center gap-2.5">
               <Logo />
               <span className="text-[15px] font-medium">
-                OGMA <span className="text-muted-foreground">Labs</span>
+                OGMA <span className="italic text-muted-foreground">Labs</span>
               </span>
             </a>
             <nav className="flex flex-wrap gap-x-6 gap-y-3">
