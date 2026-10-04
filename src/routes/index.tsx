@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import ogmaLogoWhite from "@/assets/ogma-logo-white.png.asset.json";
+import ogmaLogo from "@/assets/ogma-logo.png.asset.json";
 import { CosmicBackground } from "@/components/CosmicBackground";
 import {
   ArrowUpRight,
@@ -84,7 +84,7 @@ function LandingPage() {
           <a href="#top" className="flex items-center gap-2.5">
             <Logo />
             <span className="text-[15px] font-medium tracking-tight">
-              OGMA <span className="italic text-muted-foreground">Labs</span>
+              OGMA <span className="text-muted-foreground">Labs</span>
             </span>
           </a>
           <nav className="hidden items-center gap-1 md:flex">
@@ -446,7 +446,7 @@ function LandingPage() {
             <a href="#top" className="flex items-center gap-2.5">
               <Logo />
               <span className="text-[15px] font-medium">
-                OGMA <span className="italic text-muted-foreground">Labs</span>
+                OGMA <span className="text-muted-foreground">Labs</span>
               </span>
             </a>
             <nav className="flex flex-wrap gap-x-6 gap-y-3">
@@ -541,11 +541,12 @@ function Logo() {
   return (
     <span aria-hidden className="relative flex h-8 w-8 items-center justify-center">
       <img
-        src={ogmaLogoWhite.url}
+        src={ogmaLogo.url}
         alt=""
         width={32}
         height={32}
         className="relative h-8 w-8 object-contain"
+        style={{ filter: "drop-shadow(0 0 6px oklch(0.7 0.15 50 / 0.35))" }}
       />
     </span>
   );
