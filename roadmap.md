@@ -1,2 +1,4 @@
 - [x] Implement smooth section transitions with wheel and touch gestures without skipping tall content.
 - [x] Verify desktop, mobile gestures, long-section reading, and reduced-motion behavior.
+- [x] Compact Services and Principles, remove Cases and standalone Manifesto, and remove service exploration labels.
+- [x] Clarify specialist responsibilities and tailored strategy with variable pricing; verify layout and navigation.
