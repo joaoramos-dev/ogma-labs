@@ -23,7 +23,7 @@ interface Nebula {
   depth: number;
 }
 
-export function CosmicBackground() {
+export function CosmicBackground({ subtle = false }: { subtle?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -33,7 +33,11 @@ export function CosmicBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
+    let animationId = 0;
+    let visible = true;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const tokens = getComputedStyle(document.documentElement);
+    const starColor = tokens.getPropertyValue("--foreground").trim();
     let width = 0;
     let height = 0;
 
@@ -45,20 +49,21 @@ export function CosmicBackground() {
     let smoothScroll = scrollY;
 
     function resize() {
-      const parent = canvas!.parentElement;
+      if (!canvas || !ctx) return;
+      const parent = canvas.parentElement;
       if (!parent) return;
       width = parent.clientWidth;
       height = parent.clientHeight;
-      canvas!.width = width * dpr;
-      canvas!.height = height * dpr;
-      ctx!.setTransform(1, 0, 0, 1, 0, 0);
-      ctx!.scale(dpr, dpr);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     }
 
     resize();
 
     const makeStars = () => {
-      const count = Math.floor((width * height) / 4000);
+      const count = Math.min(subtle ? 130 : 500, Math.floor((width * height) / (subtle ? 10500 : 4000)));
       const arr: Star[] = [];
       for (let i = 0; i < count; i++) {
         const depth = Math.random();
@@ -85,7 +90,7 @@ export function CosmicBackground() {
         x: width * 0.5,
         y: height * 0.35,
         radius: Math.min(width, height) * 0.5,
-        color: "oklch(0.72 0.16 55 / 0.05)",
+        color: tokens.getPropertyValue("--cosmic-copper").trim(),
         driftX: 0.15,
         driftY: 0.08,
         phase: 0,
@@ -95,7 +100,7 @@ export function CosmicBackground() {
         x: width * 0.2,
         y: height * 0.6,
         radius: Math.min(width, height) * 0.35,
-        color: "oklch(0.65 0.12 280 / 0.03)",
+        color: tokens.getPropertyValue("--cosmic-cool").trim(),
         driftX: -0.1,
         driftY: 0.12,
         phase: Math.PI,
@@ -105,7 +110,7 @@ export function CosmicBackground() {
         x: width * 0.8,
         y: height * 0.5,
         radius: Math.min(width, height) * 0.4,
-        color: "oklch(0.7 0.14 50 / 0.035)",
+        color: tokens.getPropertyValue("--cosmic-warm").trim(),
         driftX: 0.08,
         driftY: -0.06,
         phase: Math.PI * 1.5,
@@ -118,14 +123,14 @@ export function CosmicBackground() {
     function draw() {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
-      time += 0.008;
+      if (!motion.matches) time += subtle ? 0.004 : 0.008;
 
       // Smooth pointer + scroll
       pointer.x += (pointer.tx - pointer.x) * 0.06;
       pointer.y += (pointer.ty - pointer.y) * 0.06;
       smoothScroll += (scrollY - smoothScroll) * 0.1;
 
-      const scrollOffset = smoothScroll * 0.15; // parallax from scroll
+      const scrollOffset = (subtle ? smoothScroll - (canvas?.parentElement?.getBoundingClientRect().top ?? 0) - window.scrollY : smoothScroll) * 0.15; // parallax from scroll
 
       // Nebulas (react to pointer)
       for (const n of nebulas) {
@@ -156,8 +161,7 @@ export function CosmicBackground() {
 
       // Stars: drift + parallax + subtle attraction toward cursor
       for (const s of stars) {
-        s.x += s.vx;
-        s.y += s.vy;
+        if (!motion.matches) { s.x += s.vx; s.y += s.vy; }
 
         // wrap
         if (s.x < -5) s.x = width + 5;
@@ -189,12 +193,13 @@ export function CosmicBackground() {
 
         ctx.beginPath();
         ctx.arc(px, py, size, 0, Math.PI * 2);
-        ctx.fillStyle = `oklch(0.98 0.005 85 / ${opacity})`;
+        ctx.fillStyle = starColor;
+        ctx.globalAlpha = opacity * (subtle ? 0.55 : 1);
         ctx.fill();
 
         if (size > 1.1) {
           const glow = ctx.createRadialGradient(px, py, 0, px, py, size * 3.5);
-          glow.addColorStop(0, `oklch(0.98 0.005 85 / ${opacity * 0.35})`);
+          glow.addColorStop(0, `color-mix(in oklab, ${starColor} ${opacity * 35}%, transparent)`);
           glow.addColorStop(1, "transparent");
           ctx.fillStyle = glow;
           ctx.beginPath();
@@ -203,8 +208,10 @@ export function CosmicBackground() {
         }
       }
 
+      ctx.globalAlpha = 1;
+
       // Occasional shooting star
-      if (Math.random() < 0.003) {
+      if (!subtle && !motion.matches && Math.random() < 0.003) {
         const sx = Math.random() * width;
         const sy = Math.random() * height * 0.5;
         const len = 40 + Math.random() * 60;
@@ -213,17 +220,27 @@ export function CosmicBackground() {
         ctx.beginPath();
         ctx.moveTo(sx, sy);
         ctx.lineTo(sx - Math.cos(angle) * len, sy - Math.sin(angle) * len);
-        ctx.strokeStyle = "oklch(0.98 0.005 85 / 0.4)";
+        ctx.strokeStyle = starColor;
+        ctx.globalAlpha = 0.4;
         ctx.lineWidth = 0.8;
         ctx.stroke();
       }
 
-      animationId = requestAnimationFrame(draw);
+      if (visible && !motion.matches) animationId = requestAnimationFrame(draw);
     }
 
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry?.isIntersecting ?? false;
+      cancelAnimationFrame(animationId);
+      if (visible) draw();
+    });
+    observer.observe(canvas);
+    const onMotionChange = () => { cancelAnimationFrame(animationId); if (visible) draw(); };
+    motion.addEventListener("change", onMotionChange);
     draw();
 
     const onPointerMove = (e: PointerEvent) => {
+      if (motion.matches || !visible) return;
       // normalize -1..1 relative to viewport
       pointer.tx = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.ty = (e.clientY / window.innerHeight) * 2 - 1;
@@ -240,6 +257,7 @@ export function CosmicBackground() {
     const onResize = () => {
       resize();
       stars = makeStars();
+      if (motion.matches) draw();
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -249,19 +267,20 @@ export function CosmicBackground() {
 
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
+      motion.removeEventListener("change", onMotionChange);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [subtle]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-0"
-      style={{ width: "100%", height: "100%" }}
+      className="pointer-events-none absolute inset-0 z-0 h-full w-full"
     />
   );
 }
