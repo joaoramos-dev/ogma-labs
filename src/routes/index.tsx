@@ -44,15 +44,15 @@ const nav = [
 ];
 
 const services = [
-  { icon: Code2, title: "Software Engineering", responsible: "Engenheiro de software", body: "Sistemas construídos para durar anos, não trimestres. Base sólida para crescer com ambição." },
-  { icon: Sparkles, title: "Inteligência Artificial", responsible: "Especialista em IA", body: "IA que devolve horas ao seu time e responde perguntas que ninguém sabia formular." },
-  { icon: Workflow, title: "Automação de Processos", responsible: "Especialista em automação", body: "Fluxos silenciosos e confiáveis que tiram o atrito de tudo que sua equipe realmente quer fazer." },
-  { icon: ShieldCheck, title: "Cibersegurança", responsible: "Especialista em segurança", body: "Proteção incorporada ao jeito de trabalhar. Confiança do cliente é algo que se mantém, não que se promete." },
-  { icon: PenTool, title: "UI/UX Design", responsible: "Designer de experiência", body: "Interfaces que respeitam quem está do outro lado da tela e tornam o complexo em algo natural." },
-  { icon: Palette, title: "Identidade de Marca", responsible: "Designer de marca", body: "Uma linguagem visual com a sua voz. Reconhecível em um instante, memorável por muito tempo." },
-  { icon: Compass, title: "Estratégia Digital", responsible: "Estrategista digital", body: "Direção clara sobre o que construir, em que ordem e por quê. Menos apostas, mais significativas." },
-  { icon: Share2, title: "Social Media", responsible: "Especialista em conteúdo", body: "Presença com ponto de vista. Histórias que atraem as pessoas certas para o que você está construindo." },
-  { icon: CloudCog, title: "Cloud Infrastructure", responsible: "Especialista em infraestrutura", body: "Infraestrutura que sai da frente — resiliente quando importa, invisível no resto do tempo." },
+  { icon: Code2, title: "Software Engineering", body: "Sistemas construídos para durar anos, não trimestres. Base sólida para crescer com ambição." },
+  { icon: Sparkles, title: "Inteligência Artificial", body: "IA que devolve horas ao seu time e responde perguntas que ninguém sabia formular." },
+  { icon: Workflow, title: "Automação de Processos", body: "Fluxos silenciosos e confiáveis que tiram o atrito de tudo que sua equipe realmente quer fazer." },
+  { icon: ShieldCheck, title: "Cibersegurança", body: "Proteção incorporada ao jeito de trabalhar. Confiança do cliente é algo que se mantém, não que se promete." },
+  { icon: PenTool, title: "UI/UX Design", body: "Interfaces que respeitam quem está do outro lado da tela e tornam o complexo em algo natural." },
+  { icon: Palette, title: "Identidade de Marca", body: "Uma linguagem visual com a sua voz. Reconhecível em um instante, memorável por muito tempo." },
+  { icon: Compass, title: "Estratégia Digital", body: "Direção clara sobre o que construir, em que ordem e por quê. Menos apostas, mais significativas." },
+  { icon: Share2, title: "Social Media", body: "Presença com ponto de vista. Histórias que atraem as pessoas certas para o que você está construindo." },
+  { icon: CloudCog, title: "Cloud Infrastructure", body: "Infraestrutura que sai da frente — resiliente quando importa, invisível no resto do tempo." },
 ];
 
 const principles = [
@@ -160,8 +160,10 @@ function LandingPage() {
         </section>
 
         {/* WHO */}
-        <section id="who" className="snap-section relative border-t border-border py-32 lg:py-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <section id="who" className="snap-section relative cosmic-section isolate border-t border-border py-32 lg:py-40">
+          <CosmicBackground subtle />
+          <div aria-hidden className="cosmic-orbit" />
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
             <div className="grid gap-16 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <SectionLabel>Sobre / 01</SectionLabel>
@@ -199,7 +201,9 @@ function LandingPage() {
         </section>
 
         {/* SERVICES */}
-        <section id="services" className="snap-section relative border-t border-border py-20 lg:py-20">
+        <section id="services" className="snap-section relative cosmic-section isolate border-t border-border py-20 lg:py-20">
+          <CosmicBackground subtle />
+          <div aria-hidden className="cosmic-orbit" />
           <div className="pointer-events-none absolute inset-0 bg-dots opacity-40" />
           <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -223,9 +227,6 @@ function LandingPage() {
                     <h3 className="font-display text-xl leading-tight">{s.title}</h3>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    <span className="text-copper">Responsável:</span> {s.responsible}
-                  </p>
                 </article>
               ))}
             </div>
@@ -233,8 +234,10 @@ function LandingPage() {
         </section>
 
         {/* PRINCIPLES */}
-        <section id="principles" className="snap-section relative border-t border-border py-20 lg:py-20">
-          <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
+        <section id="principles" className="snap-section relative cosmic-section isolate border-t border-border py-20 lg:py-20">
+          <CosmicBackground subtle />
+          <div aria-hidden className="cosmic-orbit" />
+          <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
             <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
               <div className="lg:col-span-5">
                 <SectionLabel>Princípios / 03</SectionLabel>
@@ -272,8 +275,10 @@ function LandingPage() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="snap-section relative border-t border-border py-32 lg:py-40">
-          <div className="mx-auto max-w-5xl px-6 lg:px-10">
+        <section id="contact" className="snap-section relative cosmic-section isolate border-t border-border py-32 lg:py-40">
+          <CosmicBackground subtle />
+          <div aria-hidden className="cosmic-orbit" />
+          <div className="relative mx-auto max-w-5xl px-6 lg:px-10">
             <div className="text-center">
               <SectionLabel className="justify-center">Contato / 04</SectionLabel>
               <h2 className="mt-6 font-display text-4xl leading-[1.05] text-balance sm:text-5xl md:text-6xl">
