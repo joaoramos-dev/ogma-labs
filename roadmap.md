@@ -1,2 +1,2 @@
-- [ ] Implement smooth section transitions with wheel and touch gestures without skipping tall content.
-- [ ] Verify desktop, mobile gestures, long-section reading, and reduced-motion behavior.
+- [x] Implement smooth section transitions with wheel and touch gestures without skipping tall content.
+- [x] Verify desktop, mobile gestures, long-section reading, and reduced-motion behavior.
