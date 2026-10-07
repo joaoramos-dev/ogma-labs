@@ -79,7 +79,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     color-scheme: dark;
   }
 
@@ -172,6 +172,9 @@
   justify-content: center;
   scroll-snap-align: start;
 }
-@media (max-width: 767px) {
-  html { scroll-snap-type: y proximity; }
+html.section-scroll-enabled {
+  scroll-snap-type: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

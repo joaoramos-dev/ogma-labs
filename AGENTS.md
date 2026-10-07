@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep staged scrolling in a browser-only hook, and advance only at section reading boundaries so tall sections remain accessible with wheel and touch input.

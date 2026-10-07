@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import ogmaLogo from "@/assets/ogma-logo.png.asset.json";
 import { CosmicBackground } from "@/components/CosmicBackground";
+import { useSectionScroll } from "@/hooks/use-section-scroll";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -24,7 +25,14 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
     links: [{ rel: "canonical", href: "/" }],
-    meta: [{ property: "og:url", content: "/" }],
+    meta: [
+      { title: "OGMA Labs — Das ideias nascem os mundos." },
+      { name: "description", content: "A OGMA Labs transforma ideias em negócios mais inteligentes com engenharia de software, inteligência artificial, design e segurança." },
+      { property: "og:title", content: "OGMA Labs — Das ideias nascem os mundos." },
+      { property: "og:description", content: "Tecnologia para ampliar o potencial das pessoas: software, inteligência artificial, design e segurança com propósito." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
   }),
 });
 
@@ -63,6 +71,7 @@ const stories = [
 ];
 
 function LandingPage() {
+  useSectionScroll();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
