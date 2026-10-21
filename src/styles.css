@@ -70,6 +70,10 @@
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 10%);
   --ring: var(--copper);
+  --cosmic-copper: oklch(from var(--copper) l c h / 0.05);
+  --cosmic-cool: oklch(0.65 0.12 280 / 0.03);
+  --cosmic-warm: oklch(from var(--copper) l c h / 0.035);
+  --orbit-line: oklch(from var(--copper) l c h / 0.12);
 }
 
 @layer base {
@@ -175,6 +179,35 @@
 html.section-scroll-enabled {
   scroll-snap-type: none;
 }
+.cosmic-section { overflow: clip; }
+.cosmic-orbit {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  width: 760px;
+  height: 760px;
+  right: -300px;
+  top: 50%;
+  margin-top: -380px;
+  border: 1px solid var(--orbit-line);
+  border-radius: 50%;
+  animation: orbit-drift 32s ease-in-out infinite alternate;
+}
+.cosmic-orbit::before, .cosmic-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 70px;
+  border: 1px solid var(--orbit-line);
+  border-radius: 50%;
+}
+.cosmic-orbit::after { inset: 145px; }
+#principles .cosmic-orbit { right: auto; left: -420px; }
+#contact .cosmic-orbit { right: 50%; margin-right: -380px; }
+@keyframes orbit-drift {
+  from { transform: translate(0, -12px) rotate(-8deg); opacity: 0.45; }
+  to { transform: translate(-24px, 12px) rotate(8deg); opacity: 0.85; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .cosmic-orbit { animation: none; }
 }
