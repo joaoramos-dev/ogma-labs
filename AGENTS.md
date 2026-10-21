@@ -10,3 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Keep staged scrolling in a browser-only hook, and advance only at section reading boundaries so tall sections remain accessible with wheel and touch input.
+- Keep scroll-boundary calculations in a pure tested helper, using reachable document anchors so short footers support reverse navigation.
+- Reuse the cosmic canvas in subtle mode outside the Hero, pausing offscreen motion and respecting reduced-motion preferences to limit rendering cost.

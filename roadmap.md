@@ -2,6 +2,6 @@
 - [x] Verify desktop, mobile gestures, long-section reading, and reduced-motion behavior.
 - [x] Compact Services and Principles, remove Cases and standalone Manifesto, and remove service exploration labels.
 - [x] Clarify specialist responsibilities and tailored strategy with variable pricing; verify layout and navigation.
-- [ ] Fix upward staged scrolling, including reverse gestures and the footer.
-- [ ] Remove service responsibility labels and add subtle cosmic motion to remaining sections without changing the Hero.
-- [ ] Verify both directions, mobile gestures, reduced motion and long-section reading.
+- [x] Fix upward staged scrolling, including reverse gestures and the footer.
+- [x] Remove service responsibility labels and add subtle cosmic motion to remaining sections without changing the Hero.
+- [x] Verify both directions, mobile gestures, reduced motion and long-section reading.

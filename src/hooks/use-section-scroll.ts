@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getSectionTarget } from "@/lib/section-scroll";
 
 /** Step between screens only at reading boundaries; never skip tall content. */
 export function useSectionScroll() {
@@ -10,26 +11,17 @@ export function useSectionScroll() {
     let releaseAt = 0;
     let wheelTotal = 0;
     let lastWheel = 0;
+    let travelDirection = 0;
     let touch: { x: number; y: number; target: number | null; captured: boolean } | null = null;
 
     const boundaryTarget = (direction: number) => {
       const y = window.scrollY;
       const height = window.innerHeight;
-      const index = sections.findIndex((section, i) => {
-        const top = section.getBoundingClientRect().top + y;
-        const next = sections[i + 1];
-        return y >= top - 3 && (!next || y < next.getBoundingClientRect().top + y - 3);
-      });
-      const section = sections[index];
-      if (!section) return null;
-      const top = section.getBoundingClientRect().top + y;
-      const bottom = top + section.offsetHeight;
-      // A tall section remains freely scrollable until its final screen is read.
-      const atBoundary = direction > 0 ? y + height >= bottom - 3 : y <= top + 3;
-      const next = sections[index + direction];
-      if (!atBoundary || !next) return null;
-      const nextTop = next.getBoundingClientRect().top + y;
-      return direction > 0 ? nextTop : Math.max(nextTop, top - height);
+      return getSectionTarget(
+        sections.map((section) => section.getBoundingClientRect().top + y),
+        sections.map((section) => section.offsetHeight), y, height,
+        document.documentElement.scrollHeight - height, direction,
+      );
     };
 
     const go = (target: number) => {
@@ -37,6 +29,7 @@ export function useSectionScroll() {
       const to = Math.min(target, document.documentElement.scrollHeight - window.innerHeight);
       if (Math.abs(to - from) < 2) return;
       busy = true;
+      travelDirection = Math.sign(to - from);
       const start = performance.now();
       const duration = reducedMotion.matches ? 0 : 680;
       const tick = (now: number) => {
@@ -66,13 +59,19 @@ export function useSectionScroll() {
     const onWheel = (event: WheelEvent) => {
       if (event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || nestedScroll(event.target)) return;
       const now = performance.now();
-      if (busy || now < releaseAt) {
+      const direction = Math.sign(event.deltaY);
+      if (!direction) return;
+      if (busy) {
         event.preventDefault();
         releaseAt = now + 180;
         return;
       }
-      if (!event.deltaY) return;
-      const direction = Math.sign(event.deltaY);
+      if (now < releaseAt && direction === travelDirection) {
+        event.preventDefault();
+        releaseAt = now + 180;
+        return;
+      }
+      if (direction !== travelDirection) releaseAt = 0;
       const target = boundaryTarget(direction);
       if (target === null) { wheelTotal = 0; return; }
       event.preventDefault();
